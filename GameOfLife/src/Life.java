@@ -18,7 +18,7 @@ import processing.core.PApplet;
 public class Life {
 
 	// Add a 2D array field to represent the Game Of Life grid.
-	
+	private boolean [][] grid;
 	
 	
 	
@@ -26,6 +26,7 @@ public class Life {
 	 * Initialized the Game of Life grid to an empty 20x20 grid.
 	 */
 	public Life() {
+		grid = new boolean[20][20];
 	}
 
 	
@@ -36,6 +37,9 @@ public class Life {
 	 * @param filename The path to the text file.
 	 */
 	public Life(String filename) {
+		grid = new boolean[20][20];
+		this.readData(filename, grid);
+		System.out.print(this);
 	}
 
 	
@@ -64,7 +68,18 @@ public class Life {
 	 * @return The grid formatted as a String.
 	 */
 	public String toString() {
-		return null;
+		String output = "";
+		for(int i=0; i<grid.length; i++) {
+			for(int j=0; j<grid[0].length; j++) {
+				if(grid[i][j]) {
+					output += "*";
+				}else {
+					output += "-";
+				}
+			}
+			output += "\n";
+		}
+		return output;
 	}
 	
 	
