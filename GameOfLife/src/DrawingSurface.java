@@ -20,7 +20,7 @@ public class DrawingSurface extends PApplet {
 	
 	
 	public DrawingSurface() {
-		board = new Life("testinputs/life100.txt");
+		board = new Life("testinputs/glider.txt");
 		runCount = -1;
 		speed = 120;
 		prevToggle = null;

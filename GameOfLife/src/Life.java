@@ -21,7 +21,6 @@ public class Life {
 	private boolean [][] grid;
 	
 	
-	
 	/**
 	 * Initialized the Game of Life grid to an empty 20x20 grid.
 	 */
@@ -50,23 +49,22 @@ public class Life {
 	 */
 	public void step() {
 		boolean [][] temp = grid;
-		for(int i=0; i<temp.length; i++) {
-			for(int j=0; j<temp[0].length; j++) {
-				int count = 0;
-				if(temp[i][j] == false) {
-					count = countNeighbors(i, j);
-					if(count == 2 || count == 3) {
-						temp[i][j] = true;
-					}
-				}else {
-					count = countNeighbors(i, j) - 1;
-					if(count == 0 || count == 1|| count == 4 || count == 5) {
-						temp[i][j] = false;
-					}
+		for(int i=0; i<grid.length; i++) {
+			for(int j=0; j<grid[0].length; j++) {
+				int count = countNeighbors(i, j);
+				System.out.print(count);
+				if(count == 3) {
+					temp[i][j] = true;
+				}else if(count <= 1|| count >= 4) {
+					temp[i][j] = false;
 				}
 			}
+			System.out.print("\n");
 		}
 		grid = temp;
+		
+		System.out.print(toString());
+		System.out.print("\n");
 	}
 
 	
@@ -82,14 +80,17 @@ public class Life {
 	
 	public int countNeighbors(int i, int j) {
 		int count = 0;
-		for(int a=i-1; a<i+1; a++) {
-			for(int b=j-1; b<j+1; b++) {
-				if((a-1>=0) && (b-1>=0) && (a+1<=grid.length) && (b+1<=grid[0].length)) {
-					if(grid[a][b] == true) {
+		for(int a=i-1; a<=i+1; a++) {
+			for(int b=j-1; b<=j+1; b++) {
+				if((a-1>=0) && (b-1>=0) && (a+1<grid.length) && (b+1<grid[0].length)) {
+					if(grid[a][b]) {
 						count++;
 					}
 				}
 			}
+		}
+		if(grid[i][j]) {
+			count--;
 		}
 		return count;
 	}
@@ -128,6 +129,16 @@ public class Life {
 	 * @param height The pixel height of the grid drawing.
 	 */
 	public void draw(PApplet marker, float x, float y, float width, float height) {
+		marker.noFill();
+		for (int i=0; i<grid.length; i++) {
+			for (int j=0; j<grid[0].length; j++) {
+				float rectWidth = width/grid[0].length;
+				float rectHeight = height/grid.length;
+				float rectX = x + rectWidth*j;
+				float rectY = y + rectHeight*i;
+				marker.rect(rectX, rectY, rectWidth, rectHeight);
+			}
+		}	
 	}
 	
 	
