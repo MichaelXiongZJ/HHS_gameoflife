@@ -49,22 +49,24 @@ public class Life {
 	 * the grid.
 	 */
 	public void step() {
-		for(int i=0; i<grid.length; i++) {
-			for(int j=0; j<grid[0].length; j++) {
+		boolean [][] temp = grid;
+		for(int i=0; i<temp.length; i++) {
+			for(int j=0; j<temp[0].length; j++) {
 				int count = 0;
-				if(grid[i][j] == false) {
+				if(temp[i][j] == false) {
 					count = countNeighbors(i, j);
 					if(count == 2 || count == 3) {
-						grid[i][j] = true;
+						temp[i][j] = true;
 					}
 				}else {
 					count = countNeighbors(i, j) - 1;
 					if(count == 0 || count == 1|| count == 4 || count == 5) {
-						grid[i][j] = false;
+						temp[i][j] = false;
 					}
 				}
 			}
 		}
+		grid = temp;
 	}
 
 	
