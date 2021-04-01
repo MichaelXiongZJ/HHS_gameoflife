@@ -51,27 +51,46 @@ public class Life {
 	public void step() {
 		for(int i=0; i<grid.length; i++) {
 			for(int j=0; j<grid[0].length; j++) {
-				if() {
-					
-				}else if() {
-					
+				int count = 0;
+				if(grid[i][j] == false) {
+					count = countNeighbors(i, j);
+					if(count == 2 || count == 3) {
+						grid[i][j] = true;
+					}
 				}else {
-					
+					count = countNeighbors(i, j) - 1;
+					if(count == 0 || count == 1|| count == 4 || count == 5) {
+						grid[i][j] = false;
+					}
 				}
 			}
 		}
 	}
 
 	
-	
 	/**
 	 * Runs n steps within the Game of Life.
 	 * @param n The number of steps to run.
 	 */
 	public void step(int n) {
+		for(int a=0; a<n; a++) {
+			step();
+		}
 	}
 	
-	
+	public int countNeighbors(int i, int j) {
+		int count = 0;
+		for(int a=i-1; a<i+1; a++) {
+			for(int b=j-1; b<j+1; b++) {
+				if((a-1>=0) && (b-1>=0) && (a+1<=grid.length) && (b+1<=grid[0].length)) {
+					if(grid[a][b] == true) {
+						count++;
+					}
+				}
+			}
+		}
+		return count;
+	}
 	
 	/**
 	 * Formats this Life grid as a String to be printed (one call to this method returns the whole multi-line grid)
