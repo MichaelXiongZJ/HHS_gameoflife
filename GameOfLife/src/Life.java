@@ -156,6 +156,12 @@ public class Life {
 	 * @return A Point object representing a coordinate within the game of life grid.
 	 */
 	public Point clickToIndex(Point p, float x, float y, float width, float height) {
+		//math to figure out i and j
+		
+		Point coordinates = new Point(i, j);
+		
+		
+		
 		return null;
 	}
 	
