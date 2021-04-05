@@ -100,6 +100,20 @@ public class Life {
 			count--;
 		}
 		return count;
+		/*
+		int count = 0;
+        for (int a = i - 1; a <= i + 1; a++) {
+            for (int b = j - 1; b <= j + 1; b++) {
+                boolean thisGrid = false;
+                try {
+                    thisGrid = grid[a][b];
+                } catch(IndexOutOfBoundsException e) {
+                }
+                if(thisGrid && (i != 0 && j != 0))
+                    count++;
+            }
+        }
+        return count;*/
 	}
 	
 	/**
