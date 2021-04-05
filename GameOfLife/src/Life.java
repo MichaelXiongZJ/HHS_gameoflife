@@ -52,7 +52,7 @@ public class Life {
 		for(int i=0; i<grid.length; i++) {
 			for(int j=0; j<grid[0].length; j++) {
 				int count = countNeighbors(i, j);
-				System.out.print(count);
+				System.out.print(count+" ");
 				if(count == 3) {
 					temp[i][j] = true;
 				}else if(count <= 1|| count >= 4) {
@@ -63,8 +63,8 @@ public class Life {
 		}
 		grid = temp;
 		
-		System.out.print(toString());
-		System.out.print("\n");
+//		System.out.print(toString());
+//		System.out.print("\n");
 	}
 
 	
@@ -78,11 +78,17 @@ public class Life {
 		}
 	}
 	
+	/**
+	 * count the number of neighbors
+	 * @param i y coordinate 
+	 * @param j x coordinate
+	 * @return count the number of neighbors
+	 */
 	public int countNeighbors(int i, int j) {
 		int count = 0;
 		for(int a=i-1; a<=i+1; a++) {
 			for(int b=j-1; b<=j+1; b++) {
-				if((a-1>=0) && (b-1>=0) && (a+1<grid.length) && (b+1<grid[0].length)) {
+				if((a>=0) && (b>=0) && (a<grid.length) && (b<grid[0].length)) {
 					if(grid[a][b]) {
 						count++;
 					}
@@ -105,9 +111,9 @@ public class Life {
 		for(int i=0; i<grid.length; i++) {
 			for(int j=0; j<grid[0].length; j++) {
 				if(grid[i][j]) {
-					output += "*";
+					output += "* ";
 				}else {
-					output += "-";
+					output += "- ";
 				}
 			}
 			output += "\n";
@@ -160,9 +166,7 @@ public class Life {
 		
 		Point coordinates = new Point(i, j);
 		
-		
-		
-		return null;
+		return coordinates;
 	}
 	
 	/**
@@ -174,6 +178,7 @@ public class Life {
 	 * @param j The y coordinate of the cell in the grid.
 	 */
 	public void toggleCell(int i, int j) {
+		grid[i][j] = !grid[i][j];
 	}
 
 	
