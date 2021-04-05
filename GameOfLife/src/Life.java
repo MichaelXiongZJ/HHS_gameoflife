@@ -63,8 +63,8 @@ public class Life {
 		}
 		grid = temp;
 		
-//		System.out.print(toString());
-//		System.out.print("\n");
+		System.out.print(toString());
+		System.out.print("\n");
 	}
 
 	
@@ -135,9 +135,13 @@ public class Life {
 	 * @param height The pixel height of the grid drawing.
 	 */
 	public void draw(PApplet marker, float x, float y, float width, float height) {
-		marker.noFill();
 		for (int i=0; i<grid.length; i++) {
 			for (int j=0; j<grid[0].length; j++) {
+				if(grid[i][j]) {
+					marker.fill(250, 250, 0);;
+				}else {
+					marker.fill(170);
+				}
 				float rectWidth = width/grid[0].length;
 				float rectHeight = height/grid.length;
 				float rectX = x + rectWidth*j;
@@ -162,10 +166,9 @@ public class Life {
 	 * @return A Point object representing a coordinate within the game of life grid.
 	 */
 	public Point clickToIndex(Point p, float x, float y, float width, float height) {
-		//math to figure out i and j
-		
+		int i = (int) ((p.y - y)*grid.length/height);
+		int j = (int) ((p.x - y)*grid[0].length/width);
 		Point coordinates = new Point(i, j);
-		
 		return coordinates;
 	}
 	
