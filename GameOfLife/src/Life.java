@@ -38,7 +38,6 @@ public class Life {
 	public Life(String filename) {
 		grid = new boolean[20][20];
 		this.readData(filename, grid);
-	//	System.out.print(this);
 	}
 
 	
@@ -48,7 +47,12 @@ public class Life {
 	 * the grid.
 	 */
 	public void step() {
-		boolean [][] temp = grid;
+		boolean [][] temp = new boolean [grid.length][grid[0].length];
+		for(int i=0; i<grid.length; i++) {
+			for(int j=0; j<grid[0].length; j++) {
+				temp[i][j] = grid[i][j];
+			}
+		}	
 		for(int i=0; i<grid.length; i++) {
 			for(int j=0; j<grid[0].length; j++) {
 				int count = countNeighbors(i, j);
@@ -61,10 +65,11 @@ public class Life {
 			}
 			System.out.print("\n");
 		}
-		grid = temp;
-		
-//		System.out.print(toString());
-//
+		for(int i=0; i<grid.length; i++) {
+			for(int j=0; j<grid[0].length; j++) {
+				grid[i][j] = temp[i][j];
+			}
+		}
 		System.out.println("\n");
 	}
 
@@ -100,20 +105,6 @@ public class Life {
 			count--;
 		}
 		return count;
-		/*
-		int count = 0;
-        for (int a = i - 1; a <= i + 1; a++) {
-            for (int b = j - 1; b <= j + 1; b++) {
-                boolean thisGrid = false;
-                try {
-                    thisGrid = grid[a][b];
-                } catch(IndexOutOfBoundsException e) {
-                }
-                if(thisGrid && (i != 0 && j != 0))
-                    count++;
-            }
-        }
-        return count;*/
 	}
 	
 	/**
