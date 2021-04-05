@@ -38,7 +38,7 @@ public class Life {
 	public Life(String filename) {
 		grid = new boolean[20][20];
 		this.readData(filename, grid);
-		System.out.print(this);
+	//	System.out.print(this);
 	}
 
 	
@@ -63,8 +63,9 @@ public class Life {
 		}
 		grid = temp;
 		
-		System.out.print(toString());
-		System.out.print("\n");
+//		System.out.print(toString());
+//
+		System.out.println("\n");
 	}
 
 	
